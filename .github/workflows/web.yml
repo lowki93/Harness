@@ -7,6 +7,7 @@ on:
       - "packages/web-client/**"
       - "packages/contract/**"
       - "package.json"
+      - "tsconfig.base.json"
       - "bun.lock"
       - ".github/workflows/web.yml"
   push:
@@ -16,6 +17,7 @@ on:
       - "packages/web-client/**"
       - "packages/contract/**"
       - "package.json"
+      - "tsconfig.base.json"
       - "bun.lock"
       - ".github/workflows/web.yml"
 

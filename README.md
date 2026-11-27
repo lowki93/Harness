@@ -54,8 +54,8 @@ One GitHub Actions workflow per part, each triggered only by the paths below (pu
 
 | Workflow | Triggering paths |
 |---|---|
-| `api.yml` | `apps/api/**`, `packages/contract/**`, `packages/web-client/**`, `package.json`, `bun.lock`, the workflow |
-| `web.yml` | `apps/web/**`, `packages/web-client/**`, `packages/contract/**`, `package.json`, `bun.lock`, the workflow |
+| `api.yml` | `apps/api/**`, `packages/contract/**`, `packages/web-client/**`, `package.json`, `tsconfig.base.json`, `bun.lock`, the workflow |
+| `web.yml` | `apps/web/**`, `packages/web-client/**`, `packages/contract/**`, `package.json`, `tsconfig.base.json`, `bun.lock`, the workflow |
 | `ios.yml` | `apps/ios/**`, the workflow |
 | `android.yml` | `apps/android/**`, the workflow |
 
