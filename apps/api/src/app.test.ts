@@ -1,3 +1,4 @@
+import { z } from "@hono/zod-openapi"
 import { describe, expect, test } from "bun:test"
 import { app } from "./app"
 import { healthResponseSchema } from "./health"
@@ -12,6 +13,8 @@ describe("GET /health", () => {
   })
 })
 
+const OpenApiDocument = z.object({ paths: z.record(z.string(), z.unknown()) })
+
 describe("API docs", () => {
   test("serves Swagger UI HTML on /docs", async () => {
     const response = await app.request("/docs")
@@ -24,7 +27,7 @@ describe("API docs", () => {
     const response = await app.request("/openapi.json")
 
     expect(response.status).toBe(200)
-    const document = (await response.json()) as { paths: Record<string, unknown> }
+    const document = OpenApiDocument.parse(await response.json())
     expect(Object.keys(document.paths)).toContain("/health")
   })
 })
