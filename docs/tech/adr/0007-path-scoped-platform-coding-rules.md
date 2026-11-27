@@ -5,12 +5,12 @@
 
 ## Context
 
-Agents and contributors writing code in `apps/ios`, `apps/android` and `apps/web` had no written conventions; only PR conventions existed (work item `20261127-platform-rules`, decisions D1–D13).
+Agents and contributors writing code in `apps/ios`, `apps/android`, `apps/web` and `apps/api` had no written conventions; only PR conventions existed (work item `20261127-platform-rules`, decisions D1–D14).
 
 ## Decision
 
-- Each platform has two rule files in `.claude/rules/{ios,android,web}/`: code conventions and testing. Each file is scoped with `paths:` frontmatter to its app, so it loads only when working on that app. They are for agents and humans alike.
-- iOS and Android rules are modelled on [swift-routing](https://github.com/lowki93/swift-routing)'s `ai-rules/` (conventions, testing), Android translated to Kotlin/Compose. Web rules capture the patterns already in `apps/web`.
+- Each platform has two rule files in `.claude/rules/{ios,android,web,api}/`: code conventions and testing. Each file is scoped with `paths:` frontmatter to its app, so it loads only when working on that app. They are for agents and humans alike.
+- iOS and Android rules are modelled on [swift-routing](https://github.com/lowki93/swift-routing)'s `ai-rules/` (conventions, testing), Android translated to Kotlin/Compose. Web and API rules capture the patterns already in `apps/web` and `apps/api`.
 - iOS navigation uses the SwiftRouting library. The package is added to the Xcode project with the first screen that navigates.
 - The Swift skills `swift-routing`, `swift-testing-expert` and `swift-concurrency` are vendored in `.agents/skills/` and pinned in `skills-lock.json`.
 - Rules cover code and tests only, not process (planning, versioning, tickets).
