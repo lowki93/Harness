@@ -35,4 +35,5 @@ jobs:
       - run: bun run test
       - run: bun run generate
       - name: Check the contract and client are up to date
-        run: git diff --exit-code -- packages/ || (echo "Contract or client out of date: run bun run generate" && exit 1)
+        run: |
+          git diff --exit-code -- packages/ || (echo "Contract or client out of date: run bun run generate" && exit 1)
