@@ -1,1 +1,14 @@
 .agentic/work
+
+# Claude Code and agentic worktrees
+/.claude/worktrees/
+
+# JS
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Env and OS
+.env*
+.DS_Store

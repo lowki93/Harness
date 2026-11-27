@@ -1,4 +1,5 @@
 {
+  "worktrees": ".claude/worktrees",
   "reviewers": [
     "code-review",
     "ub-mode",
@@ -6,5 +7,6 @@
     "super-review",
     "agentic-review-secrets",
     "agentic-review-access-control"
-  ]
+  ],
+  "verify": "bun run verify"
 }
