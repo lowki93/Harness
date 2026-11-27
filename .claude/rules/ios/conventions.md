@@ -21,7 +21,7 @@ Swift and SwiftUI coding rules for the iOS app in `apps/ios/` (iOS 18, Swift 6).
 ## 3) Concurrency
 
 - Swift 6 strict concurrency: fix data-race warnings, do not silence them.
-- `@MainActor` on views, view models and routers.
+- `@MainActor` on view models, routers and other UI-bound types (SwiftUI `View` is already main-actor isolated).
 - Types that cross isolation boundaries are `Sendable`.
 - `final class` by default; prefer `struct` and `enum` for plain values.
 

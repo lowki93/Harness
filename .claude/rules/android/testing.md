@@ -10,7 +10,7 @@ JUnit 4 testing conventions for `apps/android`. Cite sections by number (for exa
 ## 1) Framework
 
 - JUnit 4, the Android default. No extra plugin.
-- Local unit tests live in `src/test/java/com/harness/app/`, mirroring the production package.
+- Local unit tests live in `apps/android/app/src/test/java/com/harness/app/`, mirroring the production package.
 
 ## 2) Test structure
 
@@ -56,7 +56,7 @@ class RouterTests {
 
 ## 6) Fakes and mocks
 
-- Reusable fakes and mocks go in `src/test/java/com/harness/app/mock/`.
+- Reusable fakes and mocks go in `apps/android/app/src/test/java/com/harness/app/mock/`.
 - Keep them minimal and reuse existing ones before creating new ones.
 
 ## 7) Determinism

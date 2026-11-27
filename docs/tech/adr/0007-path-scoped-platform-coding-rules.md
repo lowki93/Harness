@@ -5,7 +5,7 @@
 
 ## Context
 
-Agents and contributors writing code in `apps/ios`, `apps/android`, `apps/web` and `apps/api` had no written conventions; only PR conventions existed (work item `20261127-platform-rules`, decisions D1–D14).
+Agents and contributors writing code in `apps/ios`, `apps/android`, `apps/web` and `apps/api` had no written conventions; only PR conventions existed (work item `20261127-platform-rules`, decisions D1–D18).
 
 ## Decision
 

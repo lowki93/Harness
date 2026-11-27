@@ -22,11 +22,11 @@ Testing conventions for the iOS app in `apps/ios/`. Cite sections as `ios/testin
 ```swift
 @MainActor
 struct HomeViewModelTests {
-  let sut: HomeViewModel
+    let sut: HomeViewModel
 
-  init() {
-    self.sut = HomeViewModel()
-  }
+    init() {
+        self.sut = HomeViewModel()
+    }
 }
 ```
 

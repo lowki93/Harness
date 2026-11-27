@@ -36,6 +36,8 @@ bun install
 | iOS | open `apps/ios/Harness.xcodeproj` in Xcode and run | `xcodebuild -project apps/ios/Harness.xcodeproj -scheme Harness -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build` |
 | Android | open `apps/android` in Android Studio and run | `cd apps/android && ./gradlew assembleDebug` |
 
+Each app's full build and test commands, and its test rules, are in `.claude/rules/<app>/testing.md` (`ios`, `android`, `web`, `api`).
+
 After any change to the API routes or schemas, regenerate the contract and the client types and commit the result (CI fails otherwise):
 
 ```bash

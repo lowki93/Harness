@@ -17,6 +17,7 @@ Kotlin and Jetpack Compose coding rules for `apps/android`. Cite sections by num
 
 - `private` by default, `internal` when another file in the module needs it.
 - `public` only for what a module boundary requires.
+- Exception: classes the Android framework instantiates from the manifest (`Activity`, `Application`, `Service`, `BroadcastReceiver`) stay public.
 - Kotlin classes are final by default: keep them. Use `open` or `abstract` only with a stated reason.
 
 ## 3) Threading and coroutines
