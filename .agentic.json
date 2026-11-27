@@ -1,4 +1,5 @@
 {
+  "worktrees": ".claude/worktrees",
   "reviewers": [
     "code-review",
     "ub-mode",
