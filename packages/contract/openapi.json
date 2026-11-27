@@ -14,10 +14,38 @@
             "enum": [
               "ok"
             ]
+          },
+          "database": {
+            "type": "string",
+            "enum": [
+              "ok"
+            ]
           }
         },
         "required": [
-          "status"
+          "status",
+          "database"
+        ]
+      },
+      "HealthDegradedResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "degraded"
+            ]
+          },
+          "database": {
+            "type": "string",
+            "enum": [
+              "unreachable"
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "database"
         ]
       }
     },
@@ -28,11 +56,21 @@
       "get": {
         "responses": {
           "200": {
-            "description": "The API is up",
+            "description": "The API and its database are up",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "The API is up but its database is unreachable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthDegradedResponse"
                 }
               }
             }

@@ -9,6 +9,7 @@ on:
       - "package.json"
       - "tsconfig.base.json"
       - "bun.lock"
+      - "compose.yaml"
       - ".github/workflows/api.yml"
   push:
     branches: [main]
@@ -19,6 +20,7 @@ on:
       - "package.json"
       - "tsconfig.base.json"
       - "bun.lock"
+      - "compose.yaml"
       - ".github/workflows/api.yml"
 
 permissions:
@@ -27,6 +29,20 @@ permissions:
 jobs:
   api:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: harness
+          POSTGRES_PASSWORD: harness
+          POSTGRES_DB: harness
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U harness"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -36,6 +52,12 @@ jobs:
       - run: bun run typecheck
       - run: bun run test
       - run: bun run generate
+      - name: Run migrations twice (wiring smoke test, the second run is a no-op)
+        env:
+          DATABASE_URL: postgres://harness:harness@localhost:5432/harness
+        run: |
+          bun run --filter @harness/api migrate
+          bun run --filter @harness/api migrate
       - name: Check the contract and client are up to date
         run: |
           git diff --exit-code -- packages/ || (echo "Contract or client out of date: run bun run generate" && exit 1)
