@@ -9,3 +9,5 @@
 | [0005](0005-contract-is-code-first.md) | Contract is code-first: Hono + Zod generate the committed OpenAPI file, CI checks drift |
 | [0006](0006-bun-workspaces-and-runtime.md) | bun workspaces; bun is also the API runtime and test runner |
 | [0007](0007-path-scoped-platform-coding-rules.md) | Path-scoped coding rules per app (iOS, Android, web, API); SwiftRouting for iOS navigation; Swift skills vendored |
+| [0008](0008-api-database-foundation-via-kysely.md) | API database foundation: Kysely, migrate command, database check in `/health`; engine still open |
+| [0009](0009-front-request-layers.md) | Request layers: web request modules, hand-written iOS and Android layers with a shared error taxonomy |
