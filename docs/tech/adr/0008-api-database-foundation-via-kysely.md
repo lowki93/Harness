@@ -11,13 +11,13 @@
 
 The API gains a database foundation, shipped on its own, with no business schema (D1, D5):
 
-- **Kysely** is the typed query builder; every query goes through one Kysely instance shared by the API.
-- **Migrations**: `bun run --filter @harness/api migrate` applies pending migrations in order; rerunning with none pending is a no-op; a failing migration stops with a non-zero exit and later ones are not applied (D10).
-- **Config**: database settings are Zod-parsed like `PORT`. Missing or invalid config makes the API refuse to start with a clear message; an unreachable database at startup does not stop the API (D9).
+- **Engine** (D14): PostgreSQL ([ADR-0003](0003-skeleton-layout-apps-and-packages.md)) through **Kysely** with `PostgresDialect` and the `pg` driver; every query goes through one Kysely instance shared by the API. Local PostgreSQL runs from a root `compose.yaml` (`docker compose up -d`).
+- **Migrations** (D10, D17): Kysely `Migrator` with `FileMigrationProvider` on `apps/api/migrations`, run by a `migrate` script. `bun run --filter @harness/api migrate` applies pending migrations in order; rerunning with none pending is a no-op; a failing migration stops with a non-zero exit and later ones are not applied. Zero migrations ship. No tests of Kysely's own behaviour; API CI gets a Postgres service and runs `migrate` twice as a smoke test of wiring and config.
+- **Config** (D9, D15): `DATABASE_URL` is required and Zod-parsed like `PORT`, read from the environment (Bun loads `.env`); the dev value is documented in the README, with no `.env.example`. Missing or invalid config makes the API refuse to start with a clear message; an unreachable database at startup does not stop the API (D9).
 - **`GET /health` checks the database** (D7, D8): `200 {status: ok, database: ok}` when reachable; `503 {status: degraded, database: unreachable}` when not, with no internal error detail. The contract and generated web client are regenerated.
+- **Test seam** (D16): `createApp({ checkDatabase })`. `checkDatabase` runs `select 1` in production and is stubbed in tests, so `bun run test` and CI unit tests stay in-process with no database.
+- **Failure handling** (D18): the `pg` connection timeout is 2 s so `/health` stays responsive; the real error is logged server-side with `console.error` and never returned in the response.
 - Only the migration mechanism and the connection check ship; the first real schema comes with the first feature that stores data (D5).
-
-**Open:** the database engine is not settled here. [ADR-0003](0003-skeleton-layout-apps-and-packages.md) names PostgreSQL as the chosen database; the tech grill in `agentic-to-plan` confirms or changes the engine, and this ADR is updated in place then.
 
 ## Rationale
 
@@ -25,6 +25,7 @@ Plumbing first keeps the next feature small. Failing fast on bad config while st
 
 ## Alternatives Considered
 
+- `Bun.sql` Kysely dialect: rejected as community-maintained and unstable; `pg` is the stable dialect on Bun (D14).
 - Business schema now: rejected, no feature stores data yet (D5).
 - Front apps calling `/health` to prove the chain (D2): superseded by [0009](0009-front-request-layers.md) (D6); only the API proves it end to end.
 
@@ -38,3 +39,4 @@ Plumbing first keeps the next feature small. Failing fast on bad config while st
 | Date | Change |
 |---|---|
 | 2026-11-27 | Created |
+| 2026-11-27 | Settled the engine (PostgreSQL, `pg`, compose), config, test seam, migrator and CI smoke test, timeout and logging (D14-D18); removed the open engine question |
