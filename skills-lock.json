@@ -1,0 +1,285 @@
+{
+  "version": 2,
+  "skills": {
+    "agentic-babysit-pr": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-babysit-pr/SKILL.md",
+      "computedHash": "5980e08b26c09d6994ae0e13e02972f6447e50e866fad74041cd57455234cb40"
+    },
+    "agentic-change-feature": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/playbooks/agentic-change-feature/SKILL.md",
+      "computedHash": "410770875b7b7ab26ce315f7172068eb26b661ecf14ed901c444d68f5677ca7f"
+    },
+    "agentic-clean-architecture": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/codestyle/agentic-clean-architecture/SKILL.md",
+      "computedHash": "5bc42e4710aea23bdd7e4f2133914f8fd6cf6c9fe01e8dc7e8a72a25826b5fdb"
+    },
+    "agentic-cleanup": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-cleanup/SKILL.md",
+      "computedHash": "e3a5036f6824cffb4a34daaeca04364b1a94ea672d108fd43595fc10f0030e49"
+    },
+    "agentic-code-testing": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/codestyle/agentic-code-testing/SKILL.md",
+      "computedHash": "eda901f4424c0cec9242980d02347c9221790147b377733def16dc67fcb7e1ff"
+    },
+    "agentic-configure": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/core/agentic-configure/SKILL.md",
+      "computedHash": "523184f46ece306bd527e9856ca30f2bdbe05fb475372f42d17e2ece1d455ac4"
+    },
+    "agentic-debug": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/playbooks/agentic-debug/SKILL.md",
+      "computedHash": "cb144ca816bec0c3e038e6306be705f8913220a7fe9cc82b85259656dff98264"
+    },
+    "agentic-grill-functional": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-grill-functional/SKILL.md",
+      "computedHash": "50c11551325552a4bfe7f6d6ebb4ba3d65eb225fbad5a02be1dd4f4b4ce84b51"
+    },
+    "agentic-grill-me": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-grill-me/SKILL.md",
+      "computedHash": "c35d9cebfdffbf32a9086d164c97c9813a9e4cd55c63f789e8d9b0a660f21558"
+    },
+    "agentic-grill-product": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-grill-product/SKILL.md",
+      "computedHash": "62e04cb31f7adb7ef84c23d74d8bd44be962f524bee9e549d0874e13ae6a6079"
+    },
+    "agentic-grill-tech": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-grill-tech/SKILL.md",
+      "computedHash": "e7e141cb5736d0e3129170a793e16865b307dd536f11b8cc83b6d9f5a4b0a449"
+    },
+    "agentic-implement": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-implement/SKILL.md",
+      "computedHash": "ffa25afcf2302003ee0b0d4529ce817e75ee0fed63bfb2374314c64d0af8537f"
+    },
+    "agentic-implement-feature": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/playbooks/agentic-implement-feature/SKILL.md",
+      "computedHash": "0581628714a38d5237be6272a7f9819e853adb6f41526780ac59f2b571d67e00"
+    },
+    "agentic-pr-review": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/playbooks/agentic-pr-review/SKILL.md",
+      "computedHash": "569680704171a5a7fbf5e7b2ccc28d12f1ce5caa5746e8ef3428b7350e43e9d2"
+    },
+    "agentic-python-engineer": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/codestyle/agentic-python-engineer/SKILL.md",
+      "computedHash": "3c8109cf2014f3d88a24910aa86dd3e78f87559b5c834be6d7c9a0fb23d6863f"
+    },
+    "agentic-review": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/review/agentic-review/SKILL.md",
+      "computedHash": "bc19f83bf36a5af3124e4d62d6f67c485ae5352a2465c39f973ca079805beef1"
+    },
+    "agentic-review-access-control": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/review/agentic-review-access-control/SKILL.md",
+      "computedHash": "f4788c60882a3211c2452c2bbdf94d04606e5c0b3ed3303d834d30ca367a7e3f"
+    },
+    "agentic-review-secrets": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/review/agentic-review-secrets/SKILL.md",
+      "computedHash": "328b5f8c8593d1730b966a67dfc08ccc5db67b1bed062ddef955b4712e32a3a9"
+    },
+    "agentic-security-audit": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/playbooks/agentic-security-audit/SKILL.md",
+      "computedHash": "a5ca80ecf772f10b294830e922e1c335d3c0c4cd721a8a5b68cb5b6a5e304414"
+    },
+    "agentic-to-plan": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-to-plan/SKILL.md",
+      "computedHash": "185ea39fe4a37c838f23a3099247076a7e1f53f31a79e1de7ad50941322db6ca"
+    },
+    "agentic-to-spec": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-to-spec/SKILL.md",
+      "computedHash": "ed97b8e85687b246656a9c872ca4fa41085d193d2ad9b3bfedcb886c6c760c03"
+    },
+    "agentic-to-tickets": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/agentic-to-tickets/SKILL.md",
+      "computedHash": "66ce6989e82a2f97b2dabc2210c99abb22d579497cd5bdae045a6292174a87d2"
+    },
+    "agentic-typescript-engineer": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/codestyle/agentic-typescript-engineer/SKILL.md",
+      "computedHash": "5e4d1409f43416740214f43a41345d8a88a18946d2ec005fc17f04cc85364544"
+    },
+    "agentic-use-knowledge": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/core/agentic-use-knowledge/SKILL.md",
+      "computedHash": "6cdbd7b439187aaee15cdc7835695ace298e6be30ee02e5cc525bd8b1cc255a2"
+    },
+    "agentic-use-workflow": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/core/agentic-use-workflow/SKILL.md",
+      "computedHash": "ea2567bcd2cd24d0166f66824ccd0d17e29ffc8ad25745ab97872870091c1a71"
+    },
+    "agentic-write-instrumented-code": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/codestyle/agentic-write-instrumented-code/SKILL.md",
+      "computedHash": "61212029325ddabc788e5fb4a9d937c7725b5ddf092ecf1c67e81d740177a784"
+    },
+    "claude-security-review": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/review/claude-security-review/SKILL.md",
+      "computedHash": "d319fa37776da3fe188c32eb0f6f97a6f748cc35f532271f10f399045ec2cd4d"
+    },
+    "code-review": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/review/code-review/SKILL.md",
+      "computedHash": "a930e9d105f30875d21a000117084865a9e9600d5d46d5fc7584db9c88e33e99"
+    },
+    "codebase-design": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/codebase-design/SKILL.md",
+      "computedHash": "264baddee12e6f8f6d923a2f032fa8e51bbde937e2628caa65cc79432b2e477f"
+    },
+    "diagnosing-bugs": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/diagnosing-bugs/SKILL.md",
+      "computedHash": "f45a38ca320a5185ceeae2432291165193cca7eadf08e7231252cc33c573261b"
+    },
+    "grilling": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/grilling/SKILL.md",
+      "computedHash": "fac97e7604fabc21eb4d791432a1af533561eedd41781d3fb20f5a2d4f03e2cd"
+    },
+    "implement": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/implement/SKILL.md",
+      "computedHash": "caaf8439a17585fb2a3d213fbb51984e391ad5e0a94aae90ca32c94c866cee42"
+    },
+    "ponytail": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/ponytail/SKILL.md",
+      "computedHash": "632702ebf21de92c7a8b315c3c603fb54f458189e7e8d9370c31872c74500f07"
+    },
+    "pr-security-review": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/review/pr-security-review/SKILL.md",
+      "computedHash": "f133e838a071c841436d320b0392d615c17ffd0ff71d0fe9929edd379bf587d2"
+    },
+    "security-audit": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/review/security-audit/SKILL.md",
+      "computedHash": "33c65c52b194bff0f0f5098bc4d892e3b2da0cf98f711c1ff96fe1b1d852abed"
+    },
+    "super-review": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/review/super-review/SKILL.md",
+      "computedHash": "e7fb4c1df5cef765780b798b436bfae82fddf7bce399dd0d9222635e774a4948"
+    },
+    "tdd": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/tdd/SKILL.md",
+      "computedHash": "b91462e0089b2366889b41d013c09f681131baef84068b809fbb066b992b4bef"
+    },
+    "to-spec": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/to-spec/SKILL.md",
+      "computedHash": "d63ddc34a8417b465fb04200527ac4d1d29f2453a084c673fd6ca4b6bf15e643"
+    },
+    "to-tickets": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/flow/to-tickets/SKILL.md",
+      "computedHash": "139aa7df5e7aca658f0f4adcba7241b695bcce94a420cdfe30f63d9a2f08ebc1"
+    },
+    "ub-mode": {
+      "source": "JohannWilfridCalixte/agent-skills",
+      "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
+      "sourceType": "github",
+      "skillPath": "skills/review/ub-mode/SKILL.md",
+      "computedHash": "b5907fb99849dbccb2995147d985b8e18efec80be38893ef5f83fb243d7c5584"
+    }
+  }
+}

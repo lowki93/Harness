@@ -1,0 +1,10 @@
+{
+  "reviewers": [
+    "code-review",
+    "ub-mode",
+    "claude-security-review",
+    "super-review",
+    "agentic-review-secrets",
+    "agentic-review-access-control"
+  ]
+}
