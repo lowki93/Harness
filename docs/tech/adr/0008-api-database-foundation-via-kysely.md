@@ -16,7 +16,7 @@ The API gains a database foundation, shipped on its own, with no business schema
 - **Config** (D9, D15): `DATABASE_URL` is required and Zod-parsed like `PORT`, read from the environment (Bun loads `.env`); the dev value is documented in the README, with no `.env.example`. Missing or invalid config makes the API refuse to start with a clear message; an unreachable database at startup does not stop the API (D9).
 - **`GET /health` checks the database** (D7, D8): `200 {status: ok, database: ok}` when reachable; `503 {status: degraded, database: unreachable}` when not, with no internal error detail. The contract and generated web client are regenerated.
 - **Test seam** (D16): `createApp({ checkDatabase })`. `checkDatabase` runs `select 1` in production and is stubbed in tests, so `bun run test` and CI unit tests stay in-process with no database.
-- **Failure handling** (D18): the `pg` connection timeout is 2 s so `/health` stays responsive; the real error is logged server-side with `console.error` and never returned in the response.
+- **Failure handling** (D18): the `pg` connection and query timeouts are 2 s each (`connectionTimeoutMillis`, `query_timeout`) so `/health` stays responsive; the real error is logged server-side with `console.error` and never returned in the response.
 - Only the migration mechanism and the connection check ship; the first real schema comes with the first feature that stores data (D5).
 
 ## Rationale
