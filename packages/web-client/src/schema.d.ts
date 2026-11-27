@@ -20,13 +20,22 @@ export interface paths {
             };
             requestBody?: never;
             responses: {
-                /** @description The API is up */
+                /** @description The API and its database are up */
                 200: {
                     headers: {
                         [name: string]: unknown;
                     };
                     content: {
                         "application/json": components["schemas"]["HealthResponse"];
+                    };
+                };
+                /** @description The API is up but its database is unreachable */
+                503: {
+                    headers: {
+                        [name: string]: unknown;
+                    };
+                    content: {
+                        "application/json": components["schemas"]["HealthDegradedResponse"];
                     };
                 };
             };
@@ -46,6 +55,14 @@ export interface components {
         HealthResponse: {
             /** @enum {string} */
             status: "ok";
+            /** @enum {string} */
+            database: "ok";
+        };
+        HealthDegradedResponse: {
+            /** @enum {string} */
+            status: "degraded";
+            /** @enum {string} */
+            database: "unreachable";
         };
     };
     responses: never;

@@ -35,8 +35,14 @@ Smallest surface that proves the chain; features come as separate work items.
 - Mobile apps do not call the API yet.
 - Mobile tests are limited to a build until the first real screen (D17).
 
+## See also
+
+- [0008](0008-api-database-foundation-via-kysely.md): database foundation (Kysely, migrations) added ahead of the first data-storing feature.
+- [0009](0009-front-request-layers.md): request layers for web, iOS and Android; generated mobile clients remain deferred.
+
 ## History
 
 | Date | Change |
 |---|---|
 | 2026-11-27 | Created |
+| 2026-11-27 | Added See also links to 0008 and 0009 |

@@ -38,6 +38,23 @@ bun install
 
 Each app's full build and test commands, and its test rules, are in `.claude/rules/<app>/testing.md` (`ios`, `android`, `web`, `api`).
 
+### Database (API)
+
+The API uses PostgreSQL through Kysely. Start it locally with Docker, then apply migrations:
+
+```bash
+docker compose up -d
+bun run --filter @harness/api migrate
+```
+
+The API reads `DATABASE_URL` from its environment and refuses to start without a valid one. Bun loads `apps/api/.env` (gitignored) when you run the API from `apps/api`, so create it with the dev value that matches `compose.yaml`:
+
+```bash
+DATABASE_URL=postgres://harness:harness@localhost:5432/harness
+```
+
+`GET /health` answers `200` when the database is reachable and `503` when it is not; the API keeps running if the database is down. `bun run generate` and the tests need no database or `DATABASE_URL`.
+
 After any change to the API routes or schemas, regenerate the contract and the client types and commit the result (CI fails otherwise):
 
 ```bash
@@ -56,7 +73,7 @@ One GitHub Actions workflow per part, each triggered only by the paths below (pu
 
 | Workflow | Triggering paths |
 |---|---|
-| `api.yml` | `apps/api/**`, `packages/contract/**`, `packages/web-client/**`, `package.json`, `tsconfig.base.json`, `bun.lock`, the workflow |
+| `api.yml` | `apps/api/**`, `packages/contract/**`, `packages/web-client/**`, `package.json`, `tsconfig.base.json`, `bun.lock`, `compose.yaml`, the workflow |
 | `web.yml` | `apps/web/**`, `packages/web-client/**`, `packages/contract/**`, `package.json`, `tsconfig.base.json`, `bun.lock`, the workflow |
 | `ios.yml` | `apps/ios/**`, the workflow |
 | `android.yml` | `apps/android/**`, the workflow |
