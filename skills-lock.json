@@ -253,6 +253,27 @@
       "skillPath": "skills/review/super-review/SKILL.md",
       "computedHash": "e7fb4c1df5cef765780b798b436bfae82fddf7bce399dd0d9222635e774a4948"
     },
+    "swift-concurrency": {
+      "source": "AvdLee/Swift-Concurrency-Agent-Skill",
+      "commit": "3b1580d8398e0b5408b3bf0bada0e941a1cfc642",
+      "sourceType": "github",
+      "skillPath": "skills/swift-concurrency/SKILL.md",
+      "computedHash": "7977e699ad9eae2cccdb8de7520b5fb7701ed01a6bde52d47263bc30dec09482"
+    },
+    "swift-routing": {
+      "source": "lowki93/swift-routing",
+      "commit": "99da8d3478a686205fe47cde676bcbe9377cf2e9",
+      "sourceType": "github",
+      "skillPath": ".skills/swift-routing/SKILL.md",
+      "computedHash": "3f560ab0c310b483986247b36e6339548e0f6a425e4edee83b74c68db1142c91"
+    },
+    "swift-testing-expert": {
+      "source": "AvdLee/Swift-Testing-Agent-Skill",
+      "commit": "798e9b1a2bcac164d4f0c781908199e754f0bab6",
+      "sourceType": "github",
+      "skillPath": "swift-testing-expert/SKILL.md",
+      "computedHash": "d21b78b1a320b96748144693762293ae9557a82ec574ab40f7037c58b5d6b339"
+    },
     "tdd": {
       "source": "JohannWilfridCalixte/agent-skills",
       "commit": "7134ed4a3cf711440f10c1f671e5df8c63bf3394",
