@@ -7,5 +7,6 @@
     "super-review",
     "agentic-review-secrets",
     "agentic-review-access-control"
-  ]
+  ],
+  "verify": "test ! -f package.json || bun run verify"
 }
