@@ -18,10 +18,11 @@ One PR changes the API and what its clients consume.
 ## Consequences
 
 - The contract is the shared surface between API and clients; drift between them must be caught (see [0004](0004-github-actions-ci-per-part.md)).
-- Whether the contract is written first (spec-first) or generated from the API's Zod schemas (code-first) is not decided here; it is left to the plan.
+- Whether the contract is written first (spec-first) or generated from the API's Zod schemas (code-first) is not decided here; see [0005](0005-contract-is-code-first.md).
 
 ## History
 
 | Date | Change |
 |---|---|
 | 2026-11-27 | Created |
+| 2026-11-27 | Open spec-first vs code-first line now points to 0005 (decision unchanged) |

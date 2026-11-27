@@ -8,3 +8,4 @@
 | Package | A shared, non-runnable part under `packages/` (contract, web-client). |
 | Generated client | Code produced from the contract (e.g. `packages/web-client`), never edited by hand. |
 | Skeleton | The first work item's minimal set of parts, with no business feature. |
+| Contract drift | The committed contract no longer matches what the API generates; CI fails until it is regenerated. |
