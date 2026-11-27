@@ -1,7 +1,9 @@
-import { describe, expect, test } from "bun:test"
+import { EventEmitter } from "node:events"
+
+import { afterEach, describe, expect, spyOn, test } from "bun:test"
 import type pg from "pg"
 
-import { createCheckDatabase } from "./database"
+import { createCheckDatabase, createPool } from "./database"
 
 interface FakeClient {
   readonly query: (config: unknown) => Promise<unknown>
@@ -41,5 +43,26 @@ describe("createCheckDatabase", () => {
 
     await expect(createCheckDatabase(pool)()).rejects.toThrow("Query read timeout")
     expect(releases).toEqual([true])
+  })
+})
+
+describe("createPool", () => {
+  const spies: Array<{ mockRestore: () => void }> = []
+
+  afterEach(() => {
+    while (spies.length > 0) spies.pop()?.mockRestore()
+  })
+
+  test("logs an error emitted by a connected client instead of throwing", () => {
+    const consoleError = spyOn(console, "error").mockImplementation(() => {})
+    spies.push(consoleError)
+    const pool = createPool("postgres://user:pass@localhost:5432/db")
+    const client = new EventEmitter()
+
+    pool.emit("connect", client)
+
+    expect(() => client.emit("error", new Error("Connection terminated unexpectedly"))).not.toThrow()
+    expect(consoleError).toHaveBeenCalledTimes(1)
+    expect(String(consoleError.mock.calls[0]?.[0])).toContain("Connection terminated unexpectedly")
   })
 })

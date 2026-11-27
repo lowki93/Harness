@@ -12,6 +12,13 @@ export const createPool = (databaseUrl: string) => {
   pool.on("error", (error) => {
     logError("database_pool_error", error)
   })
+  // pg-pool drops its idle error listener while a client is checked out, so a connection drop
+  // mid-query would otherwise emit an unhandled `error` and crash the process.
+  pool.on("connect", (client) => {
+    client.on("error", (error) => {
+      logError("database_client_error", error)
+    })
+  })
   return pool
 }
 
