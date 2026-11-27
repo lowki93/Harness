@@ -8,3 +8,4 @@
 | [0004](0004-github-actions-ci-per-part.md) | GitHub Actions CI per part on every PR, path-filtered |
 | [0005](0005-contract-is-code-first.md) | Contract is code-first: Hono + Zod generate the committed OpenAPI file, CI checks drift |
 | [0006](0006-bun-workspaces-and-runtime.md) | bun workspaces; bun is also the API runtime and test runner |
+| [0007](0007-path-scoped-platform-coding-rules.md) | Path-scoped coding rules per platform (iOS, Android, web); SwiftRouting for iOS navigation; Swift skills vendored |
