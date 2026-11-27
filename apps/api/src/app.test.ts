@@ -17,15 +17,17 @@ describe("GET /health", () => {
 
 const OpenApiDocument = z.object({ paths: z.record(z.string(), z.unknown()) })
 
-describe("API docs", () => {
-  test("serves Swagger UI HTML on /docs, pointing at the served document", async () => {
+describe("GET /docs", () => {
+  test("serves Swagger UI HTML pointing at the served document", async () => {
     const response = await app.request("/docs")
 
     expect(response.status).toBe(200)
     expect(response.headers.get("content-type")).toContain("text/html")
     expect(await response.text()).toContain("/openapi.json")
   })
+})
 
+describe("GET /openapi.json", () => {
   test("serves an OpenAPI document listing /health", async () => {
     const response = await app.request("/openapi.json")
 

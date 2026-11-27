@@ -1,0 +1,76 @@
+---
+paths:
+  - "apps/android/**"
+---
+
+# Android Testing Rules
+
+JUnit 4 testing conventions for `apps/android`. Cite sections by number (for example "testing 3").
+
+## 1) Framework
+
+- JUnit 4, the Android default. No extra plugin.
+- Local unit tests live in `apps/android/app/src/test/java/com/harness/app/`, mirroring the production package.
+
+## 2) Test structure
+
+- One test class per domain (example: `RouterTests`).
+- Keep shared setup in `@Before` or in property initialisers.
+- Prefer properties for dependencies; avoid `makeX()` helpers when the class setup is enough.
+
+## 3) Group tests by behaviour
+
+- Annotate the outer class with `@RunWith(Enclosed::class)`.
+- One nested class per behaviour area (the equivalent of nested enums in swift-routing). Nested classes are static, so they set up their own subject.
+
+```kotlin
+@RunWith(Enclosed::class)
+class RouterTests {
+
+    class CurrentRoute {
+        private val router = Router(Configuration.default)
+
+        @Test
+        fun givenEmptyPath_whenReadingCurrentRoute_thenReturnsRoot() {
+            assertEquals(Route.Root, router.currentRoute)
+        }
+    }
+
+    class Push {
+        // push tests
+    }
+}
+```
+
+## 4) Naming
+
+- `givenX_whenY_thenZ`, in lowerCamelCase.
+- No backtick names: they break on older Android tooling.
+- Describe behaviour, not implementation.
+
+## 5) Assertions and scope
+
+- One behaviour per test; do not combine unrelated scenarios.
+- Use clear expected values.
+- Prefix with `expected` only reference values set up by the test (`expectedUser`). Never prefix observed outputs (`foundUser`, `receivedEvent`).
+
+## 6) Fakes and mocks
+
+- Reusable fakes and mocks go in `apps/android/app/src/test/java/com/harness/app/mock/`.
+- Keep them minimal and reuse existing ones before creating new ones.
+
+## 7) Determinism
+
+- No randomness, no real time, no sleeping.
+- Test coroutines with `runTest` and injected dispatchers (conventions 3).
+- Prefer state verification over logs.
+
+## 8) Commands
+
+Single source for Android build and test commands; other docs point here.
+
+- Prerequisites (see README): JDK 21 (Android Studio's works) and the Android SDK path via `apps/android/local.properties` (`sdk.dir=...`) or `ANDROID_HOME`.
+- Build: `cd apps/android && ./gradlew assembleDebug`
+- Unit tests: `cd apps/android && ./gradlew testDebugUnitTest`
+
+There is no test source set yet (ADR 0003: build only until the first real screen). Until tests exist, run the build command only; add the test dependencies through the version catalog with the first test.

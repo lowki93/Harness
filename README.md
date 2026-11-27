@@ -36,6 +36,8 @@ bun install
 | iOS | open `apps/ios/Harness.xcodeproj` in Xcode and run | `xcodebuild -project apps/ios/Harness.xcodeproj -scheme Harness -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build` |
 | Android | open `apps/android` in Android Studio and run | `cd apps/android && ./gradlew assembleDebug` |
 
+Each app's full build and test commands, and its test rules, are in `.claude/rules/<app>/testing.md` (`ios`, `android`, `web`, `api`).
+
 After any change to the API routes or schemas, regenerate the contract and the client types and commit the result (CI fails otherwise):
 
 ```bash
@@ -72,3 +74,5 @@ npx skills@latest update -p -y
 ```
 
 The project config is in [`.agentic.json`](.agentic.json). To set your own models, run `/agentic-configure --global`.
+
+The project also vendors the Swift skills `swift-routing` ([lowki93/swift-routing](https://github.com/lowki93/swift-routing)), `swift-testing-expert` ([AvdLee/Swift-Testing-Agent-Skill](https://github.com/AvdLee/Swift-Testing-Agent-Skill)) and `swift-concurrency` ([AvdLee/Swift-Concurrency-Agent-Skill](https://github.com/AvdLee/Swift-Concurrency-Agent-Skill)) the same way. Per-app coding rules live in `.claude/rules/{ios,android,web,api}/` and load only when you work on that app (see [ADR 0007](docs/tech/adr/0007-path-scoped-platform-coding-rules.md)).
