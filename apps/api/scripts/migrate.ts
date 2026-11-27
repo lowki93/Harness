@@ -2,10 +2,10 @@ import { promises as fs } from "node:fs"
 import path from "node:path"
 import { FileMigrationProvider, Migrator } from "kysely/migration"
 import { parseConfig } from "../src/config"
-import { createDatabase } from "../src/database"
+import { createDatabase, createPool } from "../src/database"
 
 const config = parseConfig(process.env)
-const database = createDatabase(config.databaseUrl)
+const database = createDatabase(createPool(config.databaseUrl))
 
 const migrator = new Migrator({
   db: database,
