@@ -1,6 +1,1 @@
 .agentic/work
-
-# Agent skills, installed by each contributor (see README)
-/.agents/
-/.claude/skills/
-/skills-lock.json
