@@ -14,11 +14,13 @@ const renderApp = () => {
 
 describe("App", () => {
   test("shows API: ok when the health call succeeds", async () => {
-    vi.stubGlobal("fetch", vi.fn(async () => Response.json({ status: "ok" })))
+    const fetch = vi.fn(async (_request: Request) => Response.json({ status: "ok" }))
+    vi.stubGlobal("fetch", fetch)
 
     renderApp()
 
     await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("API: ok"))
+    expect(new URL(fetch.mock.calls[0]?.[0].url ?? "").pathname).toBe("/api/health")
   })
 
   test("shows API unreachable when the fetch rejects", async () => {

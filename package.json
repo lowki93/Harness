@@ -7,9 +7,9 @@
   ],
   "scripts": {
     "dev": "bun run --filter @harness/api --filter @harness/web dev",
-    "generate": "if find apps packages -maxdepth 2 -name package.json 2>/dev/null | grep -q .; then bun run --filter @harness/api generate && bun run --filter @harness/web-client generate; fi",
-    "test": "if find apps packages -maxdepth 2 -name package.json 2>/dev/null | grep -q .; then bun run --filter '*' test; fi",
-    "typecheck": "if find apps packages -maxdepth 2 -name package.json 2>/dev/null | grep -q .; then bun run --filter '*' typecheck; fi",
+    "generate": "bun run --filter @harness/api generate && bun run --filter @harness/web-client generate",
+    "test": "bun run --filter '*' test",
+    "typecheck": "bun run --filter '*' typecheck",
     "verify": "bun install --frozen-lockfile && bun run typecheck && bun run test && bun run generate && git diff --exit-code -- packages/"
   }
 }

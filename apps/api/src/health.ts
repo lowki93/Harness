@@ -1,6 +1,6 @@
 import { createRoute, z } from "@hono/zod-openapi"
 
-export const healthResponseSchema = z
+export const HealthResponse = z
   .object({ status: z.literal("ok") })
   .openapi("HealthResponse")
 
@@ -10,7 +10,7 @@ export const healthRoute = createRoute({
   responses: {
     200: {
       description: "The API is up",
-      content: { "application/json": { schema: healthResponseSchema } },
+      content: { "application/json": { schema: HealthResponse } },
     },
   },
 })
