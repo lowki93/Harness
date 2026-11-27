@@ -12,7 +12,7 @@ Format: `type(scope): [TICKET-ID] description`
   - `impr`: improvement to existing code, tooling or workflow
   - `update`: dependency, changelog or release update
   - `revert`: revert of an earlier change
-- `scope`: the area touched, lowercase (e.g. `docs`, `tests`, `workflow`)
+- `scope`: the area touched, lowercase (`api`, `web`, `ios`, `android`, `contract`, `web-client`, `ci`, `docs`, `tests`, `workflow`)
 - `[TICKET-ID]`: the tracker ticket (e.g. `[ABC-12]`). Leave it out when the work has no ticket.
 - `description`: short, imperative, lowercase, no trailing period
 
