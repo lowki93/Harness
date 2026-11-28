@@ -2,8 +2,8 @@ import { describe, expect, spyOn, test } from "bun:test"
 
 import { z } from "@hono/zod-openapi"
 
-import { createApp } from "./app"
-import { HealthDegradedResponse, HealthResponse } from "./health"
+import { createApp } from "../src/app"
+import { HealthDegradedResponse, HealthResponse } from "../src/health"
 
 const healthyApp = () => createApp({ checkDatabase: async () => {} })
 

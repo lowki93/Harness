@@ -3,7 +3,7 @@ import { EventEmitter } from "node:events"
 import { afterEach, describe, expect, spyOn, test } from "bun:test"
 import type pg from "pg"
 
-import { createCheckDatabase, createPool } from "./database"
+import { createCheckDatabase, createPool } from "../src/database"
 
 interface FakeClient {
   readonly query: (config: unknown) => Promise<unknown>

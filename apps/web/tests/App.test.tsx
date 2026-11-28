@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { render, screen, waitFor } from "@testing-library/react"
 import { describe, expect, test, vi } from "vitest"
-import { App } from "./App"
+import { App } from "../src/App"
 
 const renderApp = () => {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })

@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test"
 
-import { parseConfig } from "./config"
+import { parseConfig } from "../src/config"
 
 describe("parseConfig", () => {
   test("parses a valid DATABASE_URL", () => {

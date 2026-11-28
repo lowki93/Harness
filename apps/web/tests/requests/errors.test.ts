@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from "vitest"
-import { DecodingError, HttpError, TransportError } from "./errors"
-import { fetchHealth } from "./health"
+import { DecodingError, HttpError, TransportError } from "../../src/requests/errors"
+import { fetchHealth } from "../../src/requests/health"
 
 describe("request errors", () => {
   test("returns the parsed body on a 2xx response", async () => {
