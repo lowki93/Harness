@@ -121,6 +121,39 @@ class DefaultApiClientTests {
 
             assertEquals(0, session.requests.size)
         }
+
+        @Test
+        fun givenPortOutOfRange_whenSending_thenThrowsInvalidUrl() = runTest {
+            val session = HttpSessionMock(statusCode = 200)
+            val client = DefaultApiClient(ApiConfiguration("http://127.0.0.1:99999"), session)
+
+            val error = runCatching { client.send(TestEndpoint("/health")) }.exceptionOrNull()
+
+            assertEquals(ApiError.InvalidUrl, error)
+            assertEquals(0, session.requests.size)
+        }
+
+        @Test
+        fun givenNonHttpScheme_whenSending_thenThrowsInvalidUrl() = runTest {
+            val session = HttpSessionMock(statusCode = 200)
+            val client = DefaultApiClient(ApiConfiguration("ftp://127.0.0.1"), session)
+
+            val error = runCatching { client.send(TestEndpoint("/health")) }.exceptionOrNull()
+
+            assertEquals(ApiError.InvalidUrl, error)
+            assertEquals(0, session.requests.size)
+        }
+
+        @Test
+        fun givenSpaceInPath_whenSending_thenThrowsInvalidUrl() = runTest {
+            val session = HttpSessionMock(statusCode = 200)
+            val client = DefaultApiClient(ApiConfiguration(BASE_URL), session)
+
+            val error = runCatching { client.send(TestEndpoint("/ec ho")) }.exceptionOrNull()
+
+            assertEquals(ApiError.InvalidUrl, error)
+            assertEquals(0, session.requests.size)
+        }
     }
 
     class TransportFailure {
@@ -144,6 +177,16 @@ class DefaultApiClientTests {
             val error = runCatching { client.send(TestEndpoint("/health")) }.exceptionOrNull()
 
             assertEquals(true, error is ApiError.Transport)
+        }
+
+        @Test
+        fun givenNonIoException_whenSending_thenThrowsTransport() = runTest {
+            val cause = IllegalStateException("boom")
+            val client = DefaultApiClient(ApiConfiguration(BASE_URL), HttpSessionMock(Result.failure(cause)))
+
+            val error = runCatching { client.send(TestEndpoint("/health")) }.exceptionOrNull()
+
+            assertEquals(cause, (error as ApiError.Transport).cause)
         }
     }
 }
