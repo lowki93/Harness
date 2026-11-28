@@ -48,8 +48,22 @@ struct HomeViewModelTests {
 
 ## 6) Mocks
 
-- Reusable mocks and test models live in `HarnessTests/Mock/`.
+- Reusable mocks and test models live in `HarnessTests/Mock/<layer>/` (`Network/` today).
+- A mock is an `actor` implementing the protocol, built from a `Result` and recording calls in `private(set)` arrays (`HTTPSessionMock` records `requests`).
 - Keep mocks minimal and reuse existing ones before adding new ones.
+
+### One suite per layer
+
+- `DefaultAPIClientTests` with `HTTPSessionMock`.
+- `<Resource>EndpointTests`: path, method, query per case.
+- `<Resource>NetworkServiceTests` with `APIClientMock` and JSON fixtures.
+- `<X>APIModelTests`: DTO to domain mapping.
+- `<Domain>RepositoryTests` with network service mocks.
+- ViewModel tests with repository mocks.
+
+### Fixtures
+
+- JSON fixtures live in `HarnessTests/Fixtures/` and mirror real API responses.
 
 ## 7) Stability
 
@@ -60,13 +74,13 @@ struct HomeViewModelTests {
 
 Single source for build and test commands; other docs point here.
 
-No test target exists yet (ADR 0003: build only until the first real screen). Build:
+Build:
 
 ```bash
 xcodebuild -project apps/ios/Harness.xcodeproj -scheme Harness -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build
 ```
 
-Once a `HarnessTests` target exists, run tests with an available iPhone simulator (list them with `xcrun simctl list devices available`):
+Test (`HarnessTests`, Swift Testing). Pick an available iPhone simulator (list them with `xcrun simctl list devices available`); CI picks one at run time:
 
 ```bash
 xcodebuild test -project apps/ios/Harness.xcodeproj -scheme Harness -destination 'platform=iOS Simulator,name=<an available iPhone>' CODE_SIGNING_ALLOWED=NO
