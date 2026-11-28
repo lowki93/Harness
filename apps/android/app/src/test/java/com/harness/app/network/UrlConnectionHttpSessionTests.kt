@@ -3,10 +3,13 @@ package com.harness.app.network
 import com.sun.net.httpserver.HttpExchange
 import com.sun.net.httpserver.HttpServer
 import java.io.IOException
+import java.io.InputStream
+import java.net.HttpURLConnection
 import java.net.InetAddress
 import java.net.InetSocketAddress
-import java.net.SocketTimeoutException
 import java.net.URL
+import java.net.URLConnection
+import java.net.URLStreamHandler
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -49,6 +52,51 @@ class CountingDispatcher : CoroutineDispatcher() {
     override fun dispatch(context: CoroutineContext, block: Runnable) {
         dispatchCount++
         block.run()
+    }
+}
+
+/** Wraps a real connection and records what the session configured and whether it disconnected. */
+private class RecordingConnection(url: URL, private val real: HttpURLConnection) : HttpURLConnection(url) {
+    var disconnectCount = 0
+        private set
+
+    override fun setRequestMethod(method: String) {
+        real.requestMethod = method
+        super.setRequestMethod(method)
+    }
+
+    override fun setConnectTimeout(timeout: Int) {
+        real.connectTimeout = timeout
+        super.setConnectTimeout(timeout)
+    }
+
+    override fun setReadTimeout(timeout: Int) {
+        real.readTimeout = timeout
+        super.setReadTimeout(timeout)
+    }
+
+    override fun getResponseCode(): Int = real.responseCode
+
+    override fun getInputStream(): InputStream = real.inputStream
+
+    override fun getErrorStream(): InputStream? = real.errorStream
+
+    override fun connect() = real.connect()
+
+    override fun usingProxy(): Boolean = real.usingProxy()
+
+    override fun disconnect() {
+        disconnectCount++
+        real.disconnect()
+    }
+}
+
+private class RecordingHandler : URLStreamHandler() {
+    var connection: RecordingConnection? = null
+
+    override fun openConnection(url: URL): URLConnection {
+        val real = URL(url.toString()).openConnection() as HttpURLConnection
+        return RecordingConnection(url, real).also { connection = it }
     }
 }
 
@@ -116,9 +164,28 @@ class UrlConnectionHttpSessionTests {
     }
 
     class Configuration : ServerTest() {
+        private val handler = RecordingHandler()
+
+        private suspend fun executeDefaultSession(): RecordingConnection {
+            val local = serve { it.reply(200) }
+            val url = URL(null, local.url().toString(), handler)
+            UrlConnectionHttpSession(Dispatchers.IO).execute(HttpRequest(url, HttpMethod.GET))
+            return handler.connection!!
+        }
+
         @Test
-        fun givenTimeoutConstant_whenInspecting_thenIsTenSeconds() {
-            assertEquals(10_000, TIMEOUT_MILLIS)
+        fun givenDefaultSession_whenExecuting_thenConnectTimeoutIsTenSeconds() = runTest {
+            assertEquals(10_000, executeDefaultSession().connectTimeout)
+        }
+
+        @Test
+        fun givenDefaultSession_whenExecuting_thenReadTimeoutIsTenSeconds() = runTest {
+            assertEquals(10_000, executeDefaultSession().readTimeout)
+        }
+
+        @Test
+        fun givenAnyResponse_whenExecuting_thenDisconnects() = runTest {
+            assertEquals(1, executeDefaultSession().disconnectCount)
         }
 
         @Test
@@ -133,19 +200,6 @@ class UrlConnectionHttpSessionTests {
     }
 
     class Failures : ServerTest() {
-        @Test
-        fun givenServerSlowerThanReadTimeout_whenExecuting_thenThrowsSocketTimeout() = runTest {
-            val local = serve {
-                Thread.sleep(1_000)
-                it.reply(200)
-            }
-            val session = UrlConnectionHttpSession(Dispatchers.IO, timeoutMillis = 100)
-
-            val error = runCatching { session.execute(HttpRequest(local.url(), HttpMethod.GET)) }.exceptionOrNull()
-
-            assertTrue(error is SocketTimeoutException)
-        }
-
         @Test
         fun givenUnreachableServer_whenExecuting_thenIoExceptionPropagates() = runTest {
             val local = serve { it.reply(200) }

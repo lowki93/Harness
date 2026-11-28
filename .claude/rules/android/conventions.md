@@ -76,7 +76,7 @@ Under `app/src/main/java/com/harness/app/`:
 ### ApiClient
 
 - `suspend fun send(endpoint: Endpoint): ByteArray` returns the raw body on 2xx.
-- No decoding in the client. Failures are a typed `sealed class ApiError : Exception`: `InvalidUrl`, `HttpStatus(code)`, `Transport(cause)` (any `IOException`, timeouts included).
+- No decoding in the client. Failures are a typed `sealed class ApiError : Exception`: `InvalidUrl`, `HttpStatus(code)`, `Transport(cause)` (any non-cancellation `Exception`, `IOException` and timeouts included). `CancellationException` is always rethrown, never wrapped in `Transport`.
 - `UrlConnectionHttpSession` is the only `HttpURLConnection` user: 10 s connect and read timeouts, reads `errorStream` on non-2xx, disconnects in `finally`, runs on the injected dispatcher.
 
 ### NetworkService

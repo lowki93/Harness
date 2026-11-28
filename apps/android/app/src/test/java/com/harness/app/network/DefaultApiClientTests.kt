@@ -3,9 +3,11 @@ package com.harness.app.network
 import com.harness.app.mock.network.HttpSessionMock
 import java.io.IOException
 import java.net.SocketTimeoutException
+import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.experimental.runners.Enclosed
 import org.junit.runner.RunWith
@@ -153,6 +155,20 @@ class DefaultApiClientTests {
 
             assertEquals(ApiError.InvalidUrl, error)
             assertEquals(0, session.requests.size)
+        }
+    }
+
+    class Cancellation {
+        @Test
+        fun givenCancellation_whenSending_thenRethrowsCancellationNotTransport() = runTest {
+            val client = DefaultApiClient(
+                ApiConfiguration(BASE_URL),
+                HttpSessionMock(Result.failure(CancellationException("cancelled"))),
+            )
+
+            val error = runCatching { client.send(TestEndpoint("/health")) }.exceptionOrNull()
+
+            assertTrue(error is CancellationException)
         }
     }
 
