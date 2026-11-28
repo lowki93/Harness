@@ -29,4 +29,4 @@ jobs:
         with:
           distribution: temurin
           java-version: "21"
-      - run: ./gradlew assembleDebug
+      - run: ./gradlew testDebugUnitTest assembleDebug

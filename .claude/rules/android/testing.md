@@ -54,10 +54,24 @@ class RouterTests {
 - Use clear expected values.
 - Prefix with `expected` only reference values set up by the test (`expectedUser`). Never prefix observed outputs (`foundUser`, `receivedEvent`).
 
-## 6) Fakes and mocks
+## 6) Mocks
 
-- Reusable fakes and mocks go in `apps/android/app/src/test/java/com/harness/app/mock/`.
-- Keep them minimal and reuse existing ones before creating new ones.
+- Reusable mocks and test models live in `apps/android/app/src/test/java/com/harness/app/mock/<layer>/` (`network/` today).
+- A mock is a hand-written class implementing the interface, built from a `Result` and recording calls in a list exposed read-only (`HttpSessionMock` records `requests`). No mocking library.
+- Keep mocks minimal and reuse existing ones before adding new ones.
+
+### One test class per layer
+
+- `DefaultApiClientTests` with `HttpSessionMock`.
+- `<Resource>EndpointTests`: path, method, query per case.
+- `<Resource>NetworkServiceTests` with `ApiClientMock` and JSON fixtures.
+- `<X>ApiModelTests`: DTO to domain mapping.
+- `<Domain>RepositoryTests` with network service mocks.
+- ViewModel tests with repository mocks.
+
+### Fixtures
+
+- JSON fixtures live in `apps/android/app/src/test/resources/fixtures/` and mirror real API responses.
 
 ## 7) Determinism
 
@@ -70,7 +84,7 @@ class RouterTests {
 Single source for Android build and test commands; other docs point here.
 
 - Prerequisites (see README): JDK 21 (Android Studio's works) and the Android SDK path via `apps/android/local.properties` (`sdk.dir=...`) or `ANDROID_HOME`.
-- Build: `cd apps/android && ./gradlew assembleDebug`
+- Build: `cd apps/android && ./gradlew assembleDebug` (add `assembleRelease` to check the release variant)
 - Unit tests: `cd apps/android && ./gradlew testDebugUnitTest`
 
-There is no test source set yet (ADR 0003: build only until the first real screen). Until tests exist, run the build command only; add the test dependencies through the version catalog with the first test.
+Tests use JUnit 4, `kotlinx-coroutines-test` and the dependencies declared in the version catalog. CI runs `./gradlew testDebugUnitTest assembleDebug`.
