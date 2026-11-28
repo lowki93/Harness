@@ -1,6 +1,6 @@
 import { describe, expect, spyOn, test } from "bun:test"
 
-import { logError } from "./log"
+import { logError } from "../src/log"
 
 describe("logError", () => {
   test("writes one JSON line with message, service, environment and error detail", () => {

@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { render, screen, waitFor } from "@testing-library/react"
 import { describe, expect, test, vi } from "vitest"
-import { App } from "./App"
+import { App } from "../src/App"
 
 const renderApp = () => {
   const queryClient = new QueryClient({ defaultOptions: { queries: { retry: false } } })
@@ -25,6 +25,25 @@ describe("App", () => {
 
   test("shows API unreachable when the fetch rejects", async () => {
     vi.stubGlobal("fetch", vi.fn(async () => Promise.reject(new TypeError("network down"))))
+
+    renderApp()
+
+    await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("API unreachable"))
+  })
+
+  test("shows API: checking while the health call is pending", () => {
+    vi.stubGlobal("fetch", vi.fn(() => new Promise<Response>(() => {})))
+
+    renderApp()
+
+    expect(screen.getByRole("status")).toHaveTextContent("API: checking")
+  })
+
+  test("shows API unreachable when the API answers 503 with the database down", async () => {
+    vi.stubGlobal(
+      "fetch",
+      vi.fn(async () => Response.json({ status: "degraded", database: "unreachable" }, { status: 503 })),
+    )
 
     renderApp()
 

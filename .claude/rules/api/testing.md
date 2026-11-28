@@ -10,7 +10,7 @@ Rules for tests in `apps/api`. See also the `agentic-code-testing` skill.
 ## 1) Runner
 
 - Use `bun:test`: `describe`, `test`, `expect`.
-- Tests sit next to the code as `*.test.ts` (example: `src/app.test.ts`).
+- Tests live in `apps/api/tests/`, mirroring `src/`, as `*.test.ts` (example: `src/app.ts` is tested by `tests/app.test.ts`).
 
 ## 2) Structure
 

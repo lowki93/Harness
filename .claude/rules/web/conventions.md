@@ -20,13 +20,15 @@ Code conventions for the React web app in `apps/web`. They describe what the cur
 ## 3) Server state
 
 - Server state goes through TanStack Query: `useQuery` with a stable `queryKey` (example: `["health"]`).
-- Query functions live outside the component (example: `fetchHealth` in `App.tsx`).
+- Query functions live outside the component (example: `fetchHealth` in `src/requests/health.ts`).
 - A query function throws on failure so the query reaches its error state. Never return an error value as data.
+- Request functions live in `src/requests/`, one module per resource (`health.ts`), never in components.
 - The `QueryClient` is created and provided in `main.tsx`; components never create one.
 
 ## 4) API access
 
-- Call the API only through the generated `@harness/web-client`, via `apiClient` in `src/api.ts` (`apiClient.GET("/health")`).
+- Call the API only through the generated `@harness/web-client`, via `apiClient` in `src/api.ts`, from a request function in `src/requests/` (`unwrap(apiClient.GET("/health"))`). `apiClient` stays the single entry point.
+- Wrap each call in `unwrap` from `src/requests/errors.ts`: a non-2xx response throws `HttpError(status)`, a rejected fetch throws `TransportError`, an unparsable body throws `DecodingError`. Components only see these typed errors. No runtime schema validation.
 - No hand-written `fetch` calls and no hand-written API types: types come from the generated client.
 - When the contract changes, regenerate with `bun run generate` (the contract is code-first, see `docs/tech/adr/0005-contract-is-code-first.md`). Never edit `packages/web-client` by hand.
 
